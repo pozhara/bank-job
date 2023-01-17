@@ -15,15 +15,23 @@ SHEET = GSPREAD_CLIENT.open("office-work")
 employees = SHEET.worksheet("Employees")
 
 def description():
-    print("Hello, we are a recently opened bank, looking for qualified people to start their career with us.")
-
+    print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is add yourself as an employee to our system.\n")
 
 def get_user_input():
     while True:
         print("What would you like to do?\n1. Add youself as an employee\n2. Request a time off\n3. See everyone's birthdays")
-        print("Please enter a number below to choose and hit ENTER.")
+        print("Please enter a letter below to choose and hit ENTER.")
         choice = input()
-    return choice
+        try: 
+            user_choice = int(choice)
+            print("We are processing your request...\n")
+            if user_choice > 3:
+                print("Please enter a valid number\n")
+            break
+        except ValueError:
+            print("Please enter a valid number\n")
+            break
+    return user_choice
 
 def main():
     description()
