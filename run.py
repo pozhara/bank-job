@@ -14,83 +14,140 @@ SHEET = GSPREAD_CLIENT.open("office-work")
 
 employees = SHEET.worksheet("Employees")
 
-def description():
-    print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is add yourself as an employee to our system.\n")
+print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is to add yourself as an employee to our system.\n")
 
-def get_user_input():
+def update_worksheet(data, worksheet):
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+
+while True:
+    try:
+        first_name = input("Please enter your first name: ")
+        print(first_name)
+        if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric():
+            raise ValueError
+        break
+    except ValueError:
+        print("Please enter valid data.\n")
+
+while True:
+    try:
+        last_name = input("Please enter your last name: ")
+        print(last_name)
+        if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric():
+            raise ValueError
+        break
+    except ValueError:
+        print("Please enter valid data.\n")
+
+while True:
+    try: 
+        age_day = int(input("Please enter the day you were born: "))
+        print(age_day)
+        if age_day > 31 or age_day < 1:
+            raise ValueError
+        break
+    except ValueError:
+        print('Value must be positive and cannot be greater than 31.\n')
+
+while True:
+    try: 
+        age_month = int(input("Please enter the month you were born: "))
+        print(age_month)
+        if age_month > 12 or age_month < 1:
+            raise ValueError
+        break
+    except ValueError:
+        print('Value must be positive and must be between 1 and 12.\n')
+
+while True:
+    try: 
+        age_year = int(input("Please enter the year you were born: "))
+        print(age_year)
+        if age_year > 1940 and age_year < 2015:
+            employee_birthday = first_name + "," + last_name + "," + str(age_day) + "," + str(age_month)
+            employee_birthday = employee_birthday.split(",")
+            employee_birthday_for_ws = [i.strip() for i in employee_birthday]
+            update_worksheet(employee_birthday_for_ws, "Birthday")
+        else:
+            raise ValueError
+        break
+    except ValueError:
+        print('Please enter valid data, must be between 1940 and 2015.\n')
+
+while True:
+    try:
+        employee_role = input("Please enter your role: ")
+        print(employee_role)
+        if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric():
+            raise ValueError
+        elif len(employee_role) > 1:
+            employee_data = first_name + "," + last_name + "," + employee_role
+            employee_data = employee_data.split(",")
+            employee_data_for_ws = [i.strip() for i in employee_data]
+            update_worksheet(employee_data_for_ws, "Employees")
+            print("Thank you, the data provided is valid and is now added to our database.\n")
+        break
+    except ValueError:
+        print("Please enter valid data.\n")
+
+def give_options():
+    print("What would you like to do?\n1. Request a day off.\n2. See your collegues' birthdays.\n3.See your collegues' names and roles.\n")
     while True:
-        print("What would you like to do?\n1. Add youself as an employee\n2. Request a time off\n3. See everyone's birthdays\n4. See everyone's names and roles")
-        print("Please enter a letter below to choose and hit ENTER.")
-        choice = input()
         try:
-            global user_choice
-            user_choice = int(choice)
-            if user_choice > 3 or user_choice < 1:
-                print("Please enter a valid number\n")
-            if choice is str():
-                print("Please enter a valid number\n")
-            print("We are processing your request...\n")
-            return user_choice
+            global user_input
+            user_input = int(input("Please enter a number: "))
+            if user_input >= 1 and user_input <= 3:
+                print("Please wait, we are processing your request...\n")
+            elif user_input < 1 or user_input > 3:
+                raise ValueError
             break
         except ValueError:
-            print("Please enter a valid number\n")
+            print("Invalid data, please enter a number between 1 and 3.\n")
+    return user_input
+
+def request_a_day_off(first_name, last_name):
+    print("You are currently requesting a day off. We will need you to provide starting and ending date, and a reason.\n")
+    while True:
+        print(f"Your name is {first_name} {last_name}.")
+        try:
+            starting_date = float(input("Please enter a starting date (For example: 12.02): "))
+            print(starting_date)
+            if starting_date > 31.12 or starting_date < 01.01 or not starting_date.isfloat():
+                raise ValueError
             break
-
-def add_employee():
-    print("We will need you to provide your first and last name, date of birth and role. Please note that you can write maximum 20 characters and your age should be above 18.")
-    first_name = input("Please enter your first name: ")
-    print(first_name)
-    last_name = input("Please enter your last name: ")
-    print(last_name)
-    age_day = int(input("Please enter your birth day: "))
-    print(age_day)
-    age_month = int(input("Please enter your birth month's number: "))
-    print(age_month)
-    age_year = int(input("Please enter your birth year: "))
-    print(age_year)
-
-    if check_string(first_name) and check_string(last_name) and check_birth(age_day, age_month, age_year):
-        print("Thank you, the data you provided is valid. It is now added to our database.\n")
-
-def check_birth(age_day, age_month, age_year):
+        except ValueError:
+            print("Invalid data, please provide it like this 12.02.\n")
     while True:
         try:
-            if age_day > 32 or age_day < 0:
-                print("Invalid data, birth day should be between 1 and 31.\n")
-            elif age_month > 13 or age_month < 0:
-                print("Invalid data, birth month should be between 1 and 12.\n")
-            elif age_year > 2015:
-                print("Sorry, we can't hire you because you are underage.\n")
-            elif age_day < 32 and age_day > 0 and age_month < 13 and age_month > 0 and age_year < 2015:
-                return True
+            ending_date = float(input("Please enter an ending date (For example: 12.02): "))
+            print(ending_date)
+            if ending_date > 31.12 or ending_date < 01.01 or not ending_date.isfloat():
+                raise ValueError
+            break
+        except ValueError:
+            print("Invalid data, please provide it like this 12.02.\n")
+    while True:
+        try:
+            user_reason = input("Please provide a reason (maximum 25 characters): ")
+            print(user_reason)
+            if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric():
+                raise ValueError
             else:
-                raise ValueError("Please enter valid data for your date of birth.\n")
+                request_data = first_name + "," + last_name + "," + str(starting_date) + "," + str(ending_date) + "," + user_reason
+                request_data = request_data.split(",")
+                request_data_for_sw = [i.strip() for i in request_data]
+                update_worksheet(request_data_for_sw, "Day Off Requests")
+                print("Thank you, data provided is valid and was added to our database.\n")
             break
         except ValueError:
-            print("Please enter valid data for your date of birth.\n")
-            break
+            print("Please provide valid data.\n") 
+        
+            
 
-def check_string(value):
-    while True:
-        try:
-            if len(value) > 20:
-                print("Invalid data, please shorten first and last name to 20 characters or less both.\n")
-            elif len(value) == 0:
-                print("Invalid data, please try again.\n")
-            elif len(value) < 21:
-                return True
-            else:
-                raise ValueError("Invalid data, please shorten first and last name to 20 characters or less both.\n")
-            break
-        except ValueError:
-            print("Please enter a valid number\n")
-            break
+def main(first_name, last_name):
+    give_options()
+    if user_input == 1:
+        request_a_day_off(first_name, last_name)
 
-
-def main():
-    description()
-    get_user_input()
-    if user_choice == 1:
-        add_employee()
-
-main()
+main(first_name, last_name)
