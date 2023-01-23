@@ -147,11 +147,18 @@ def request_a_day_off(first_name, last_name):
                 print("Thank you, data provided is valid and was added to our database.\n")
             break
         except ValueError:
-            print("Please provide valid data.\n") 
+            print("Please provide valid data.\n")
+
+def see_birthdays():
+    birthdays = SHEET.worksheet("Birthday").get_all_values()
+    for row in birthdays:
+        print(f"{','.join(row)}\n")
 
 def main(first_name, last_name):
     give_options()
     if user_input == 1:
         request_a_day_off(first_name, last_name)
+    if user_input == 2:
+        see_birthdays()
 
 main(first_name, last_name)
