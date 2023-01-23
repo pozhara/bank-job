@@ -113,7 +113,7 @@ def request_a_day_off(first_name, last_name):
         try:
             starting_date = float(input("Please enter a starting date (For example: 12.02): "))
             print(starting_date)
-            if starting_date > 31.12 or starting_date < 01.01 or not starting_date.isfloat():
+            if starting_date > 31.12 or starting_date < 01.01:
                 raise ValueError
             break
         except ValueError:
