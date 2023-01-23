@@ -13,8 +13,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("office-work")
 
-employees = SHEET.worksheet("Employees")
-
 print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is to add yourself as an employee to our system.\n")
 
 def update_worksheet(data, worksheet):
@@ -70,7 +68,7 @@ while True:
         days = int(age.days)
         converted_years = days/365
         employee_age = int(converted_years)
-        if employee_age > 18 and employee_age < 80:
+        if employee_age >= 18 and employee_age < 80:
             employee_birthday = first_name + "," + last_name + "," + str(age_day) + "," + str(age_month)
             employee_birthday = employee_birthday.split(",")
             employee_birthday_for_ws = [i.strip() for i in employee_birthday]
@@ -152,7 +150,21 @@ def request_a_day_off(first_name, last_name):
 def see_birthdays():
     birthdays = SHEET.worksheet("Birthday").get_all_values()
     for row in birthdays:
-        print(f"{','.join(row)}\n")
+        first_name_birthday = row[0]
+        last_name_birthday = row[1]
+        age_day_birthday = row[2]
+        age_month_birthday = row[3]
+        employees_birthday = last_name_birthday + ", " + first_name_birthday + ": " + age_day_birthday + "." + age_month_birthday
+        print(employees_birthday)
+
+def see_roles():
+    employees = SHEET.worksheet("Employees").get_all_values()
+    for row in employees:
+        employee_fname = row[0]
+        employee_lname = row[1]
+        role = row[2]
+        data_to_print = employee_lname + ", " + employee_fname + " - " + role
+        print(data_to_print)
 
 def main(first_name, last_name):
     give_options()
@@ -160,5 +172,7 @@ def main(first_name, last_name):
         request_a_day_off(first_name, last_name)
     if user_input == 2:
         see_birthdays()
+    if user_input == 3:
+        see_roles()
 
 main(first_name, last_name)
