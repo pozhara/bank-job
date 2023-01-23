@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -64,7 +65,12 @@ while True:
     try: 
         age_year = int(input("Please enter the year you were born: "))
         print(age_year)
-        if age_year > 1940 and age_year < 2015:
+        date_of_birth = datetime.datetime(age_year, age_month, age_day)
+        age = (datetime.datetime.now() - date_of_birth)
+        days = int(age.days)
+        converted_years = days/365
+        employee_age = int(converted_years)
+        if employee_age > 18 and employee_age < 80:
             employee_birthday = first_name + "," + last_name + "," + str(age_day) + "," + str(age_month)
             employee_birthday = employee_birthday.split(",")
             employee_birthday_for_ws = [i.strip() for i in employee_birthday]
@@ -73,7 +79,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print('Please enter valid data, must be between 1940 and 2015.\n')
+        print('Invalid data, your age should be between 18 and 80.\n')
 
 while True:
     try:
@@ -122,7 +128,7 @@ def request_a_day_off(first_name, last_name):
         try:
             ending_date = float(input("Please enter an ending date (For example: 12.02): "))
             print(ending_date)
-            if ending_date > 31.12 or ending_date < 01.01 or not ending_date.isfloat():
+            if ending_date > 31.12 or ending_date < 01.01:
                 raise ValueError
             break
         except ValueError:
@@ -142,8 +148,6 @@ def request_a_day_off(first_name, last_name):
             break
         except ValueError:
             print("Please provide valid data.\n") 
-        
-            
 
 def main(first_name, last_name):
     give_options()
