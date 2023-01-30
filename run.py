@@ -20,17 +20,11 @@ SHEET = GSPREAD_CLIENT.open("office-work")
 print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is to add yourself as an employee to our system.\n")
 
 def clear():
-    """"
-    Clears the user terminal
-    """
     system('clear')
 
 
 def wait():
-    """
-    Delays text printing by 1750ms
-    """
-    time.sleep(1.75)
+    time.sleep(2.5)
 
 def update_worksheet(data, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
