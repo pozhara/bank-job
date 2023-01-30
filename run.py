@@ -13,7 +13,10 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-# Adds credentials to the account and authorises the client sheet
+"""
+Adds credentials to the account and authorises the client sheet.
+Code taken from Love Sandwiches.
+"""
 CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
@@ -23,16 +26,24 @@ SHEET = GSPREAD_CLIENT.open("office-work")
 print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is to add yourself as an employee to our system.\n")
 
 def clear():
-    # Clears the terminal
+    """
+    Clears the terminal
+    https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+    """
     system('clear')
 
-
 def wait():
-    # Adds pause before going on
+    """
+    Adds pause before going on
+    https://www.pythoncentral.io/pythons-time-sleep-pause-wait-sleep-stop-your-code/
+    """
     time.sleep(2.5)
 
 def update_worksheet(data, worksheet):
-    # Updates worksheet
+    """
+    Updates worksheet.
+    Code taken from Love Sandwiches
+    """
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
 
@@ -188,7 +199,7 @@ def request_a_day_off(first_name, last_name):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this: 12.02\n")
+            print("Invalid data, please provide it like this: 01.02\n")
     while True:
         try:
             """
@@ -197,7 +208,7 @@ def request_a_day_off(first_name, last_name):
             numbers after comma are higher than 12 or there are 
             more than 2 numbers after comma, raises a ValueError.
             """
-            ending_date = float(input("Please enter an ending date (For example: 12.02): "))
+            ending_date = float(input("Please enter an ending date (For example: 01.02): "))
             print(ending_date)
             whole_two = math.floor(ending_date)
             frac_two = ending_date - whole_two
