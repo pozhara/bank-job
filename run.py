@@ -19,6 +19,19 @@ SHEET = GSPREAD_CLIENT.open("office-work")
 
 print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is to add yourself as an employee to our system.\n")
 
+def clear():
+    """"
+    Clears the user terminal
+    """
+    system('clear')
+
+
+def wait():
+    """
+    Delays text printing by 1750ms
+    """
+    time.sleep(1.75)
+
 def update_worksheet(data, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
@@ -99,33 +112,24 @@ while True:
     except ValueError:
         print("Please enter valid data.\n")
 
-def clear():
-    """"
-    Clears the user terminal
-    """
-    system('clear')
-
-
-def wait():
-    """
-    Delays text printing by 1750ms
-    """
-    time.sleep(1.75)
-
 def give_options():
-    print("What would you like to do?\n1. Request a day off.\n2. See your collegues' birthdays.\n3.See your collegues' names and roles.\n")
+    print("What would you like to do?\n1. Request a day off.\n2. See your collegues' birthdays.\n3. See your collegues' names and roles.\n4. Exit.")
     while True:
         try:
             global user_input
             user_input = int(input("Please enter a number: "))
-            if user_input >= 1 and user_input <= 3:
+            if user_input >= 1 and user_input <= 4:
                 print("Please wait, we are processing your request...\n")
-            elif user_input < 1 or user_input > 3:
+                wait()
+                clear()
+            elif user_input < 1 or user_input > 4:
                 raise ValueError
             break
         except ValueError:
             print("Invalid data, please enter a number between 1 and 3.\n")
     return user_input
+    clear()
+    wait()
 
 def request_a_day_off(first_name, last_name):
     print("You are currently requesting a day off. We will need you to provide starting and ending date, and a reason.\n")
@@ -168,6 +172,8 @@ def request_a_day_off(first_name, last_name):
             break
         except ValueError:
             print("Please provide valid data.\n")
+    wait()
+    give_options()
 
 def see_birthdays():
     birthdays = SHEET.worksheet("Birthday").get_all_values()
@@ -176,8 +182,11 @@ def see_birthdays():
         last_name_birthday = row[1]
         age_day_birthday = row[2]
         age_month_birthday = row[3]
-        employees_birthday = last_name_birthday + ", " + first_name_birthday + ": " + age_day_birthday + "." + age_month_birthday
+        employees_birthday = last_name_birthday + ", " + first_name_birthday + ": " + age_day_birthday + "." + age_month_birthday + "\n"
         print(employees_birthday)
+    wait()
+    give_options()
+
 
 def see_roles():
     employees = SHEET.worksheet("Employees").get_all_values()
@@ -185,8 +194,10 @@ def see_roles():
         employee_fname = row[0]
         employee_lname = row[1]
         role = row[2]
-        data_to_print = employee_lname + ", " + employee_fname + " - " + role
+        data_to_print = employee_lname + ", " + employee_fname + " - " + role + "\n"
         print(data_to_print)
+    wait()
+    give_options()
 
 def main(first_name, last_name):
     give_options()
@@ -196,5 +207,8 @@ def main(first_name, last_name):
         see_birthdays()
     if user_input == 3:
         see_roles()
+    if user_input == 4:
+        clear()
+        sys.exit("You are now exiting the program. Thank you!")
 
 main(first_name, last_name)
