@@ -54,7 +54,8 @@ while True:
         Raises ValueError if input isn't valid.
         """
         first_name = input("Please enter your first name(maximum 20 characters): ")
-        print(first_name)
+        cap_first_name = first_name.capitalize()
+        print(cap_first_name)
         if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric():
             raise ValueError
         break
@@ -68,7 +69,8 @@ while True:
         Raises ValueError if input isn't valid.
         """
         last_name = input("Please enter your last name(maximum 20 characters): ")
-        print(last_name)
+        cap_last_name = last_name.capitalize()
+        print(cap_last_name)
         if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric():
             raise ValueError
         break
@@ -119,7 +121,7 @@ while True:
         converted_years = days/365
         employee_age = int(converted_years)
         if employee_age >= 18 and employee_age < 80:
-            employee_birthday = first_name + "," + last_name + "," + str(age_day) + "," + str(age_month)
+            employee_birthday = cap_first_name + "," + cap_last_name + "," + str(age_day) + "," + str(age_month)
             employee_birthday = employee_birthday.split(",")
             employee_birthday_for_ws = [i.strip() for i in employee_birthday]
             update_worksheet(employee_birthday_for_ws, "Birthday")
@@ -137,11 +139,12 @@ while True:
         If it isn't, raises a ValueError.
         """
         employee_role = input("Please enter your role(maximum 20 characters): ")
-        print(employee_role)
+        cap_employee_role = employee_role.capitalize()
+        print(cap_employee_role)
         if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric():
             raise ValueError
         elif len(employee_role) > 1:
-            employee_data = first_name + "," + last_name + "," + employee_role
+            employee_data = cap_first_name + "," + cap_last_name + "," + cap_employee_role
             employee_data = employee_data.split(",")
             employee_data_for_ws = [i.strip() for i in employee_data]
             update_worksheet(employee_data_for_ws, "Employees")
@@ -174,7 +177,7 @@ def give_options():
     clear()
     wait()
 
-def request_a_day_off(first_name, last_name):
+def request_a_day_off(cap_first_name, cap_last_name):
     """
     Asks for starting and ending date and a reason for a day off. 
     If the data is valid, request a day off worksheet is updated, 
@@ -182,7 +185,7 @@ def request_a_day_off(first_name, last_name):
     """
     print("You are currently requesting a day off. We will need you to provide starting and ending date, and a reason.\n")
     while True:
-        print(f"Your name is {first_name} {last_name}.")
+        print(f"Your name is {cap_first_name} {cap_last_name}.")
         try:
             """
             Asks for starting date.
@@ -229,7 +232,7 @@ def request_a_day_off(first_name, last_name):
             if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric():
                 raise ValueError
             else:
-                request_data = first_name + "," + last_name + "," + str(starting_date) + "," + str(ending_date) + "," + user_reason
+                request_data = cap_first_name + "," + cap_last_name + "," + str(starting_date) + "," + str(ending_date) + "," + user_reason
                 request_data = request_data.split(",")
                 request_data_for_sw = [i.strip() for i in request_data]
                 update_worksheet(request_data_for_sw, "Day Off Requests")
@@ -272,14 +275,14 @@ def see_roles():
     wait()
     give_options()
 
-def main(first_name, last_name):
+def main(cap_first_name, cap_last_name):
     """
     Main function which calls other functions
     based on user input.
     """
     give_options()
     if user_input == 1:
-        request_a_day_off(first_name, last_name)
+        request_a_day_off(cap_first_name, cap_last_name)
     if user_input == 2:
         see_birthdays()
     if user_input == 3:
@@ -289,4 +292,4 @@ def main(first_name, last_name):
         sys.exit("You are now exiting the program. Thank you!")
 
 # Calling the main function
-main(first_name, last_name)
+main(cap_first_name, cap_last_name)
