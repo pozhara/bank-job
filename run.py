@@ -1,6 +1,10 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import datetime
+import math
+import sys
+import time
+from os import system
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -95,6 +99,19 @@ while True:
     except ValueError:
         print("Please enter valid data.\n")
 
+def clear():
+    """"
+    Clears the user terminal
+    """
+    system('clear')
+
+
+def wait():
+    """
+    Delays text printing by 1750ms
+    """
+    time.sleep(1.75)
+
 def give_options():
     print("What would you like to do?\n1. Request a day off.\n2. See your collegues' birthdays.\n3.See your collegues' names and roles.\n")
     while True:
@@ -117,20 +134,25 @@ def request_a_day_off(first_name, last_name):
         try:
             starting_date = float(input("Please enter a starting date (For example: 12.02): "))
             print(starting_date)
-            if starting_date > 31.12 or starting_date < 01.01:
+            whole = math.floor(starting_date)
+            frac = starting_date - whole
+            needed_decimal = '0.23'
+            if starting_date > 31.12 or starting_date < 01.01 or starting_date.is_integer() or frac > 0.31 or len(needed_decimal) > len(str(starting_date)):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this 12.02.\n")
+            print("Invalid data, please provide it like this: 12.02\n")
     while True:
         try:
             ending_date = float(input("Please enter an ending date (For example: 12.02): "))
             print(ending_date)
-            if ending_date > 31.12 or ending_date < 01.01:
+            whole_two = math.floor(ending_date)
+            frac_two = ending_date - whole_two
+            if ending_date > 31.12 or ending_date < 01.01 or ending_date.is_integer() or frac_two > 0.31 or len(needed_decimal) > len(str(ending_date)):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this 12.02.\n")
+            print("Invalid data, please provide it like this: 12.02\n")
     while True:
         try:
             user_reason = input("Please provide a reason (maximum 25 characters): ")
