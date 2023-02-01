@@ -159,13 +159,13 @@ def give_options():
     If it is, clears terminal, waits a bit and does what the user chose.
     If it's not, raises ValueError.
     """
-    print("What would you like to do?\n1. Request a day off.\n2. See your collegues' birthdays.\n3. See your collegues' names and roles.\n4. Exit.")
+    print("\nWhat would you like to do?\n1. Request a day off.\n2. See your collegues' birthdays.\n3. See your collegues' names and roles.\n4. Exit.")
     while True:
         try:
             global user_input
             user_input = int(input("Please enter a number: "))
             if user_input >= 1 and user_input <= 4:
-                print("Please wait, we are processing your request...\n")
+                print("\nPlease wait, we are processing your request...\n")
                 wait()
                 clear()
             elif user_input < 1 or user_input > 4:
@@ -185,7 +185,8 @@ def request_a_day_off(cap_first_name, cap_last_name):
     """
     print("You are currently requesting a day off. We will need you to provide starting and ending date, and a reason.\n")
     while True:
-        print(f"Your name is {cap_first_name} {cap_last_name}.")
+        user_name = "Your name is " + cap_first_name + " " + cap_last_name + "."
+        print(user_name)
         try:
             """
             Asks for starting date.
@@ -193,7 +194,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
             numbers after comma are higher than 12 and if there are 
             more than 2 numbers after comma, raises a ValueError.
             """
-            starting_date = float(input("Please enter a starting date (For example: 12.02): "))
+            starting_date = float(input("Please enter a starting date (For example: 01.02): "))
             print(starting_date)
             whole = math.floor(starting_date)
             frac = starting_date - whole
@@ -219,7 +220,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this: 12.02\n")
+            print("Invalid data, please provide it like this: 01.02\n")
     while True:
         try:
             """
@@ -254,7 +255,7 @@ def see_birthdays():
         last_name_birthday = row[1]
         age_day_birthday = row[2]
         age_month_birthday = row[3]
-        employees_birthday = last_name_birthday + ", " + first_name_birthday + ": " + age_day_birthday + "." + age_month_birthday + "\n"
+        employees_birthday = last_name_birthday + ", " + first_name_birthday + ": " + age_day_birthday + "." + age_month_birthday
         print(employees_birthday)
     wait()
     give_options()
@@ -270,7 +271,7 @@ def see_roles():
         employee_fname = row[0]
         employee_lname = row[1]
         role = row[2]
-        data_to_print = employee_lname + ", " + employee_fname + " - " + role + "\n"
+        data_to_print = employee_lname + ", " + employee_fname + " - " + role
         print(data_to_print)
     wait()
     give_options()
