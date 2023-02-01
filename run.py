@@ -53,7 +53,7 @@ while True:
         Asks for first name, checks for length, the input not being a number or null.
         Raises ValueError if input isn't valid.
         """
-        first_name = input("\nPlease enter your first name(maximum 20 characters): ")
+        first_name = input("\nPlease enter your first name(maximum 20 characters):\n")
         cap_first_name = first_name.capitalize()
         print(cap_first_name)
         if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric():
@@ -68,7 +68,7 @@ while True:
         Asks for first name, checks for length, the input not being a number or null.
         Raises ValueError if input isn't valid.
         """
-        last_name = input("\nPlease enter your last name(maximum 20 characters): ")
+        last_name = input("\nPlease enter your last name(maximum 20 characters):\n")
         cap_last_name = last_name.capitalize()
         print(cap_last_name)
         if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric():
@@ -83,7 +83,7 @@ while True:
         Asks for birth day, checks for input being a number between 1 and 31.
         If it's lower, higher, null or a string, raises ValueError.
         """
-        age_day = int(input("\nPlease enter the day you were born: "))
+        age_day = int(input("\nPlease enter the day you were born:\n"))
         print(age_day)
         if age_day > 31 or age_day < 1:
             raise ValueError
@@ -97,7 +97,7 @@ while True:
         Asks for birth month, checks for input being a number between 1 and 12.
         If input is lower, higher, null or a string, raises ValueError.
         """
-        age_month = int(input("\nPlease enter the month you were born: "))
+        age_month = int(input("\nPlease enter the month you were born:\n"))
         print(age_month)
         if age_month > 12 or age_month < 1:
             raise ValueError
@@ -113,7 +113,7 @@ while True:
         If it's not, raises ValueError.
         If it is, updates birthday worksheet.
         """
-        age_year = int(input("\nPlease enter the year you were born: "))
+        age_year = int(input("\nPlease enter the year you were born:\n"))
         print(age_year)
         date_of_birth = datetime.datetime(age_year, age_month, age_day)
         age = (datetime.datetime.now() - date_of_birth)
@@ -138,7 +138,7 @@ while True:
         If data is valid, it is added to employees worksheet.
         If it isn't, raises a ValueError.
         """
-        employee_role = input("\nPlease enter your role(maximum 20 characters): ")
+        employee_role = input("\nPlease enter your role(maximum 20 characters):\n")
         cap_employee_role = employee_role.capitalize()
         print(cap_employee_role)
         if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric():
@@ -163,7 +163,7 @@ def give_options():
     while True:
         try:
             global user_input
-            user_input = int(input("Please enter a number: "))
+            user_input = int(input("Please enter a number:\n"))
             if user_input >= 1 and user_input <= 4:
                 print("\nPlease wait, we are processing your request...\n")
                 wait()
@@ -194,7 +194,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
             numbers after comma are higher than 12 and if there are 
             more than 2 numbers after comma, raises a ValueError.
             """
-            starting_date = float(input("\nPlease enter a starting date (For example: 01.02): "))
+            starting_date = float(input("\nPlease enter a starting date (For example: 01.02):\n"))
             print(starting_date)
             whole = math.floor(starting_date)
             frac = starting_date - whole
@@ -212,7 +212,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
             numbers after comma are higher than 12 or there are 
             more than 2 numbers after comma, raises a ValueError.
             """
-            ending_date = float(input("\nPlease enter an ending date (For example: 01.02): "))
+            ending_date = float(input("\nPlease enter an ending date (For example: 01.02):\n"))
             print(ending_date)
             whole_two = math.floor(ending_date)
             frac_two = ending_date - whole_two
@@ -228,7 +228,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
             If it's length is higher than 25 or null, or if it's a number, raises ValueError.
             Otherwise, updates day off requests worksheet and thanks the user.
             """
-            user_reason = input("\nPlease provide a reason (maximum 25 characters): ")
+            user_reason = input("\nPlease provide a reason (maximum 25 characters):\n")
             print(user_reason)
             if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric():
                 raise ValueError
