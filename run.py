@@ -23,7 +23,9 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("office-work")
 
 # A greeting, instruction on what to do next
-print("Hello, we are a recently opened bank, thank you for starting your career with us. Your next step is to add yourself as an employee to our system.\n")
+print("Hello, we are a recently opened bank, " 
+    "thank you for starting your career with us. "
+    "Your next step is to add yourself as an employee to our system.\n")
 
 def clear():
     """
@@ -55,12 +57,11 @@ while True:
         """
         first_name = input("\nPlease enter your first name(maximum 20 characters):\n")
         cap_first_name = first_name.capitalize()
-        print(cap_first_name)
         if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric():
             raise ValueError
         break
     except ValueError:
-        print("\nPlease enter valid data.\n")
+        print("Please enter valid data.")
 
 while True:
     try:
@@ -70,12 +71,11 @@ while True:
         """
         last_name = input("\nPlease enter your last name(maximum 20 characters):\n")
         cap_last_name = last_name.capitalize()
-        print(cap_last_name)
         if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric():
             raise ValueError
         break
     except ValueError:
-        print("\nPlease enter valid data.\n")
+        print("Please enter valid data.")
 
 while True:
     try:
@@ -84,12 +84,11 @@ while True:
         If it's lower, higher, null or a string, raises ValueError.
         """
         age_day = int(input("\nPlease enter the day you were born:\n"))
-        print(age_day)
         if age_day > 31 or age_day < 1:
             raise ValueError
         break
     except ValueError:
-        print('\nValue must be positive and cannot be greater than 31.\n')
+        print('Value must be positive and cannot be greater than 31.')
 
 while True:
     try:
@@ -98,12 +97,11 @@ while True:
         If input is lower, higher, null or a string, raises ValueError.
         """
         age_month = int(input("\nPlease enter the month you were born:\n"))
-        print(age_month)
         if age_month > 12 or age_month < 1:
             raise ValueError
         break
     except ValueError:
-        print('\nValue must be positive and must be between 1 and 12.\n')
+        print('Value must be positive and must be between 1 and 12.')
 
 while True:
     try:
@@ -114,7 +112,6 @@ while True:
         If it is, updates birthday worksheet.
         """
         age_year = int(input("\nPlease enter the year you were born:\n"))
-        print(age_year)
         date_of_birth = datetime.datetime(age_year, age_month, age_day)
         age = (datetime.datetime.now() - date_of_birth)
         days = int(age.days)
@@ -129,7 +126,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print('\nInvalid data, your age should be between 18 and 80.\n')
+        print('Invalid data, your age should be between 18 and 80.')
 
 while True:
     try:
@@ -140,7 +137,6 @@ while True:
         """
         employee_role = input("\nPlease enter your role(maximum 20 characters):\n")
         cap_employee_role = employee_role.capitalize()
-        print(cap_employee_role)
         if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric():
             raise ValueError
         elif len(employee_role) > 1:
@@ -151,7 +147,7 @@ while True:
             print("\nThank you, the data provided is valid and is now added to our database.\n")
         break
     except ValueError:
-        print("\nPlease enter valid data.\n")
+        print("Please enter valid data.")
 
 def give_options():
     """
@@ -195,7 +191,6 @@ def request_a_day_off(cap_first_name, cap_last_name):
             more than 2 numbers after comma, raises a ValueError.
             """
             starting_date = float(input("\nPlease enter a starting date (For example: 01.02):\n"))
-            print(starting_date)
             whole = math.floor(starting_date)
             frac = starting_date - whole
             needed_decimal = '0.23'
@@ -213,7 +208,6 @@ def request_a_day_off(cap_first_name, cap_last_name):
             more than 2 numbers after comma, raises a ValueError.
             """
             ending_date = float(input("\nPlease enter an ending date (For example: 01.02):\n"))
-            print(ending_date)
             whole_two = math.floor(ending_date)
             frac_two = ending_date - whole_two
             if ending_date > 31.12 or ending_date < 01.01 or ending_date.is_integer() or frac_two > 0.12 or len(needed_decimal) > len(str(ending_date)):
@@ -229,7 +223,6 @@ def request_a_day_off(cap_first_name, cap_last_name):
             Otherwise, updates day off requests worksheet and thanks the user.
             """
             user_reason = input("\nPlease provide a reason (maximum 25 characters):\n")
-            print(user_reason)
             if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric():
                 raise ValueError
             else:
@@ -290,7 +283,7 @@ def main(cap_first_name, cap_last_name):
         see_roles()
     if user_input == 4:
         clear()
-        sys.exit("You are now exiting the program. Thank you!")
+        sys.exit("You have exited the program. Thank you!")
 
 # Calling the main function
 main(cap_first_name, cap_last_name)
