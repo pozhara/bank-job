@@ -23,9 +23,9 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("office-work")
 
 # A greeting, instruction on what to do next
-print("Hello, we are a recently opened bank, " 
-    "thank you for starting your career with us. "
-    "Your next step is to add yourself as an employee to our system.\n")
+print("Hello, we are a recently opened bank,") 
+print("thank you for starting your career with us.")
+print("Your next step is to add yourself as an employee to our system.\n")
 
 def clear():
     """
@@ -198,7 +198,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 raise ValueError
             break
         except ValueError:
-            print("\nInvalid data, please provide it like this: 01.02\n")
+            print("Invalid data, please provide it like this: 01.02\n")
     while True:
         try:
             """
@@ -214,7 +214,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 raise ValueError
             break
         except ValueError:
-            print("\nInvalid data, please provide it like this: 01.02\n")
+            print("Invalid data, please provide it like this: 01.02")
     while True:
         try:
             """
@@ -233,7 +233,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 print("\nThank you, data provided is valid and was added to our database.\n")
             break
         except ValueError:
-            print("\nPlease provide valid data.\n")
+            print("Please provide valid data.")
     wait()
     give_options()
 
