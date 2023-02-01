@@ -34,7 +34,7 @@ def clear():
 
 def wait():
     """
-    Adds pause before going on
+    Adds pause before going on.
     https://www.pythoncentral.io/pythons-time-sleep-pause-wait-sleep-stop-your-code/
     """
     time.sleep(2.5)
@@ -53,14 +53,14 @@ while True:
         Asks for first name, checks for length, the input not being a number or null.
         Raises ValueError if input isn't valid.
         """
-        first_name = input("Please enter your first name(maximum 20 characters): ")
+        first_name = input("\nPlease enter your first name(maximum 20 characters): ")
         cap_first_name = first_name.capitalize()
         print(cap_first_name)
         if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric():
             raise ValueError
         break
     except ValueError:
-        print("Please enter valid data.\n")
+        print("\nPlease enter valid data.\n")
 
 while True:
     try:
@@ -68,14 +68,14 @@ while True:
         Asks for first name, checks for length, the input not being a number or null.
         Raises ValueError if input isn't valid.
         """
-        last_name = input("Please enter your last name(maximum 20 characters): ")
+        last_name = input("\nPlease enter your last name(maximum 20 characters): ")
         cap_last_name = last_name.capitalize()
         print(cap_last_name)
         if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric():
             raise ValueError
         break
     except ValueError:
-        print("Please enter valid data.\n")
+        print("\nPlease enter valid data.\n")
 
 while True:
     try:
@@ -83,13 +83,13 @@ while True:
         Asks for birth day, checks for input being a number between 1 and 31.
         If it's lower, higher, null or a string, raises ValueError.
         """
-        age_day = int(input("Please enter the day you were born: "))
+        age_day = int(input("\nPlease enter the day you were born: "))
         print(age_day)
         if age_day > 31 or age_day < 1:
             raise ValueError
         break
     except ValueError:
-        print('Value must be positive and cannot be greater than 31.\n')
+        print('\nValue must be positive and cannot be greater than 31.\n')
 
 while True:
     try:
@@ -97,13 +97,13 @@ while True:
         Asks for birth month, checks for input being a number between 1 and 12.
         If input is lower, higher, null or a string, raises ValueError.
         """
-        age_month = int(input("Please enter the month you were born: "))
+        age_month = int(input("\nPlease enter the month you were born: "))
         print(age_month)
         if age_month > 12 or age_month < 1:
             raise ValueError
         break
     except ValueError:
-        print('Value must be positive and must be between 1 and 12.\n')
+        print('\nValue must be positive and must be between 1 and 12.\n')
 
 while True:
     try:
@@ -113,7 +113,7 @@ while True:
         If it's not, raises ValueError.
         If it is, updates birthday worksheet.
         """
-        age_year = int(input("Please enter the year you were born: "))
+        age_year = int(input("\nPlease enter the year you were born: "))
         print(age_year)
         date_of_birth = datetime.datetime(age_year, age_month, age_day)
         age = (datetime.datetime.now() - date_of_birth)
@@ -129,7 +129,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print('Invalid data, your age should be between 18 and 80.\n')
+        print('\nInvalid data, your age should be between 18 and 80.\n')
 
 while True:
     try:
@@ -138,7 +138,7 @@ while True:
         If data is valid, it is added to employees worksheet.
         If it isn't, raises a ValueError.
         """
-        employee_role = input("Please enter your role(maximum 20 characters): ")
+        employee_role = input("\nPlease enter your role(maximum 20 characters): ")
         cap_employee_role = employee_role.capitalize()
         print(cap_employee_role)
         if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric():
@@ -148,10 +148,10 @@ while True:
             employee_data = employee_data.split(",")
             employee_data_for_ws = [i.strip() for i in employee_data]
             update_worksheet(employee_data_for_ws, "Employees")
-            print("Thank you, the data provided is valid and is now added to our database.\n")
+            print("\nThank you, the data provided is valid and is now added to our database.\n")
         break
     except ValueError:
-        print("Please enter valid data.\n")
+        print("\nPlease enter valid data.\n")
 
 def give_options():
     """
@@ -172,7 +172,7 @@ def give_options():
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please enter a number between 1 and 3.\n")
+            print("\nInvalid data, please enter a number between 1 and 3.\n")
     return user_input
     clear()
     wait()
@@ -194,7 +194,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
             numbers after comma are higher than 12 and if there are 
             more than 2 numbers after comma, raises a ValueError.
             """
-            starting_date = float(input("Please enter a starting date (For example: 01.02): "))
+            starting_date = float(input("\nPlease enter a starting date (For example: 01.02): "))
             print(starting_date)
             whole = math.floor(starting_date)
             frac = starting_date - whole
@@ -203,7 +203,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this: 01.02\n")
+            print("\nInvalid data, please provide it like this: 01.02\n")
     while True:
         try:
             """
@@ -212,7 +212,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
             numbers after comma are higher than 12 or there are 
             more than 2 numbers after comma, raises a ValueError.
             """
-            ending_date = float(input("Please enter an ending date (For example: 01.02): "))
+            ending_date = float(input("\nPlease enter an ending date (For example: 01.02): "))
             print(ending_date)
             whole_two = math.floor(ending_date)
             frac_two = ending_date - whole_two
@@ -220,7 +220,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this: 01.02\n")
+            print("\nInvalid data, please provide it like this: 01.02\n")
     while True:
         try:
             """
@@ -228,7 +228,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
             If it's length is higher than 25 or null, or if it's a number, raises ValueError.
             Otherwise, updates day off requests worksheet and thanks the user.
             """
-            user_reason = input("Please provide a reason (maximum 25 characters): ")
+            user_reason = input("\nPlease provide a reason (maximum 25 characters): ")
             print(user_reason)
             if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric():
                 raise ValueError
@@ -237,10 +237,10 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 request_data = request_data.split(",")
                 request_data_for_sw = [i.strip() for i in request_data]
                 update_worksheet(request_data_for_sw, "Day Off Requests")
-                print("Thank you, data provided is valid and was added to our database.\n")
+                print("\nThank you, data provided is valid and was added to our database.\n")
             break
         except ValueError:
-            print("Please provide valid data.\n")
+            print("\nPlease provide valid data.\n")
     wait()
     give_options()
 
