@@ -61,7 +61,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print("Please enter valid data.")
+        print("Please enter your first name, maximum 20 characters.")
 
 while True:
     try:
@@ -75,7 +75,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print("Please enter valid data.")
+        print("Please enter your last name, maximum 20 characters.")
 
 while True:
     try:
@@ -88,7 +88,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print('Value must be positive and cannot be greater than 31.')
+        print('Value must be a positive number and cannot be greater than 31.')
 
 while True:
     try:
@@ -99,9 +99,11 @@ while True:
         age_month = int(input("\nPlease enter the month you were born:\n"))
         if age_month > 12 or age_month < 1:
             raise ValueError
+        elif age_month == 2 and age_day > 29:
+            raise ValueError
         break
     except ValueError:
-        print('Value must be positive and must be between 1 and 12.')
+        print('Value must be a positive number and must be between 1 and 12.')
 
 while True:
     try:
@@ -126,7 +128,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print('Invalid data, your age should be between 18 and 80.')
+        print('Please try again, your age should be between 18 and 80.')
 
 while True:
     try:
@@ -135,7 +137,7 @@ while True:
         If data is valid, it is added to employees worksheet.
         If it isn't, raises a ValueError.
         """
-        employee_role = input("\nPlease enter your role(maximum 20 characters):\n")
+        employee_role = input("\nPlease enter your job role(maximum 20 characters):\n")
         cap_employee_role = employee_role.capitalize()
         if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric():
             raise ValueError
@@ -147,7 +149,7 @@ while True:
             print("\nThank you, the data provided is valid and is now added to our database.\n")
         break
     except ValueError:
-        print("Please enter valid data.")
+        print("Please try again, your job role should be 20 characters maximum.")
 
 def give_options():
     """
@@ -168,7 +170,7 @@ def give_options():
                 raise ValueError
             break
         except ValueError:
-            print("\nInvalid data, please enter a number between 1 and 3.\n")
+            print("\nPlease try again, enter a number between 1 and 4.\n")
     return user_input
     clear()
     wait()
@@ -198,7 +200,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this: 01.02\n")
+            print("Please try again, provide it like this: 01.02\n")
     while True:
         try:
             """
@@ -214,7 +216,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 raise ValueError
             break
         except ValueError:
-            print("Invalid data, please provide it like this: 01.02")
+            print("Please try again, provide it like this: 01.02")
     while True:
         try:
             """
@@ -233,7 +235,7 @@ def request_a_day_off(cap_first_name, cap_last_name):
                 print("\nThank you, data provided is valid and was added to our database.\n")
             break
         except ValueError:
-            print("Please provide valid data.")
+            print("Please provide a reason, maximum 25 characters. You can write a number as long as it's not at the beginning.")
     wait()
     give_options()
 
