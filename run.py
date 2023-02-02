@@ -5,6 +5,7 @@ import math # to check decimal
 import sys # to exit the program
 import time # to add pauses
 from os import system # to clear terminal
+import re
 
 # Defines the scope
 SCOPE = [
@@ -223,9 +224,11 @@ def request_time_off(cap_first_name, cap_last_name):
             Asks for a reason.
             If it's length is higher than 25 or null, or if it's a number, raises ValueError.
             Otherwise, updates day off requests worksheet and thanks the user.
+            https://stackoverflow.com/questions/57062794/how-to-check-if-a-string-has-any-special-characters
             """
             user_reason = input("\nPlease provide a reason (maximum 25 characters):\n")
-            if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric() or not user_reason.isalpha():
+            regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
+            if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric() or not (regex.search(user_reason) == None):
                 raise ValueError
             else:
                 request_data = cap_first_name + "," + cap_last_name + "," + str(starting_date) + "," + str(ending_date) + "," + user_reason
