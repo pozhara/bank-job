@@ -212,7 +212,7 @@ def request_time_off(cap_first_name, cap_last_name):
             ending_date = float(input("\nPlease enter an ending date (For example: 01.02):\n"))
             whole_two = math.floor(ending_date)
             frac_two = ending_date - whole_two
-            if ending_date > 31.12 or ending_date < 01.01 or ending_date.is_integer() or frac_two > 0.12 or len(needed_decimal) > len(str(ending_date)):
+            if ending_date > 31.12 or ending_date < 01.01 or ending_date.is_integer() or frac_two > 0.12 or len(needed_decimal) > len(str(ending_date)) or ending_date < starting_date:
                 raise ValueError
             break
         except ValueError:
