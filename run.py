@@ -57,11 +57,11 @@ while True:
         """
         first_name = input("\nPlease enter your first name(maximum 20 characters):\n")
         cap_first_name = first_name.capitalize()
-        if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric():
+        if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric() or not first_name.isalpha():
             raise ValueError
         break
     except ValueError:
-        print("Please enter your first name, maximum 20 characters.")
+        print("Please try again, enter your first name, maximum 20 characters.")
 
 while True:
     try:
@@ -71,11 +71,11 @@ while True:
         """
         last_name = input("\nPlease enter your last name(maximum 20 characters):\n")
         cap_last_name = last_name.capitalize()
-        if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric():
+        if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric() or not last_name.isalpha():
             raise ValueError
         break
     except ValueError:
-        print("Please enter your last name, maximum 20 characters.")
+        print("Please try again, enter your last name, maximum 20 characters.")
 
 while True:
     try:
@@ -139,7 +139,7 @@ while True:
         """
         employee_role = input("\nPlease enter your job role(maximum 20 characters):\n")
         cap_employee_role = employee_role.capitalize()
-        if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric():
+        if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric() or not employee_role.isalpha():
             raise ValueError
         elif len(employee_role) > 1:
             employee_data = cap_first_name + "," + cap_last_name + "," + cap_employee_role
@@ -225,7 +225,7 @@ def request_time_off(cap_first_name, cap_last_name):
             Otherwise, updates day off requests worksheet and thanks the user.
             """
             user_reason = input("\nPlease provide a reason (maximum 25 characters):\n")
-            if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric():
+            if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric() or not user_reason.isalpha():
                 raise ValueError
             else:
                 request_data = cap_first_name + "," + cap_last_name + "," + str(starting_date) + "," + str(ending_date) + "," + user_reason
