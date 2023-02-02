@@ -157,7 +157,7 @@ def give_options():
     If it is, clears terminal, waits a bit and does what the user chose.
     If it's not, raises ValueError.
     """
-    print("\nWhat would you like to do?\n1. Request a day off.\n2. See your collegues' birthdays.\n3. See your collegues' names and roles.\n4. Exit.")
+    print("\nWhat would you like to do?\n1. Request time off.\n2. See your collegues' birthdays.\n3. See your collegues' names and roles.\n4. Exit.")
     while True:
         try:
             global user_input
@@ -175,7 +175,7 @@ def give_options():
     clear()
     wait()
 
-def request_a_day_off(cap_first_name, cap_last_name):
+def request_time_off(cap_first_name, cap_last_name):
     """
     Asks for starting and ending date and a reason for a day off. 
     If the data is valid, request a day off worksheet is updated, 
@@ -278,7 +278,7 @@ def main(cap_first_name, cap_last_name):
     """
     give_options()
     if user_input == 1:
-        request_a_day_off(cap_first_name, cap_last_name)
+        request_time_off(cap_first_name, cap_last_name)
     if user_input == 2:
         see_birthdays()
     if user_input == 3:
