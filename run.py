@@ -5,8 +5,8 @@ import math # to check decimal
 import sys # to exit the program
 import time # to add pauses
 from os import system # to clear terminal
-import re
-import random
+import re # to check for special characters in a string input
+import random # to approve or disapprove requests for time off
 
 # Defines the scope
 SCOPE = [
@@ -46,7 +46,7 @@ def wait():
 def update_worksheet(data, worksheet):
     """
     Updates worksheet.
-    Code taken from Love Sandwiches
+    Code taken from Love Sandwiches.
     """
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
@@ -193,6 +193,8 @@ def request_time_off(cap_first_name, cap_last_name):
             If it's lower than 01.01, higher than 31.12, is integer,
             numbers after comma are higher than 12 and if there are 
             more than 2 numbers after comma, raises a ValueError.
+            Approves or disapproves a request.
+            If request is disapproved, user can challenge it.
             """
             starting_date = float(input("\nPlease enter a starting date (For example: 01.02):\n"))
             whole = math.floor(starting_date)
@@ -246,6 +248,7 @@ def request_time_off(cap_first_name, cap_last_name):
     approve_request()
 
 def approve_request():
+    # Randomly approves or disapproves a request for time off.
     random_number = random.randint(1,10)
     if random_number % 2 == 0:
         print("Your request for time off was approved!")
@@ -256,6 +259,7 @@ def approve_request():
         challenge_disapproval()
 
 def challenge_disapproval():
+    # Lets the user challenge disapproval of request for a time off.
     try:
         challenge_choice = input("Do you want to challenge disapproval? Y/N:\n")
         if challenge_choice.capitalize() == "Y":
