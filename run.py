@@ -6,6 +6,7 @@ import sys # to exit the program
 import time # to add pauses
 from os import system # to clear terminal
 import re
+import random
 
 # Defines the scope
 SCOPE = [
@@ -158,7 +159,7 @@ def give_options():
     If it is, clears terminal, waits a bit and does what the user chose.
     If it's not, raises ValueError.
     """
-    print("\nWhat would you like to do?\n1. Request time off.\n2. See your collegues' birthdays.\n3. See your collegues' names and roles.\n4. Exit.")
+    print("\nWhat would you like to do?\n1. Request time off.\n2. See your colleagues' birthdays.\n3. See your colleagues' names and roles.\n4. Exit.")
     while True:
         try:
             global user_input
@@ -182,7 +183,7 @@ def request_time_off(cap_first_name, cap_last_name):
     If the data is valid, request a day off worksheet is updated, 
     waits a bit and asks what user wants to do next.
     """
-    print("You are currently requesting a day off. We will need you to provide starting and ending date, and a reason.\n")
+    print("You are currently requesting time off. We will need you to provide starting and ending date, and a reason.\n")
     while True:
         user_name = "Your name is " + cap_first_name + " " + cap_last_name + "."
         print(user_name)
@@ -239,8 +240,38 @@ def request_time_off(cap_first_name, cap_last_name):
             break
         except ValueError:
             print("Please provide a reason, maximum 25 characters. You can write a number as long as it's not at the beginning.")
+    print("Please wait, we are processing your request...\n")
     wait()
-    give_options()
+    wait()
+    approve_request()
+
+def approve_request():
+    random_number = random.randint(1,10)
+    if random_number % 2 == 0:
+        print("Your request for time off was approved!")
+        wait()
+        give_options()
+    else:
+        print("Your request for time off was not approved. You can challenge disapproval if needed and we will give you a call to discuss it.\n")
+        challenge_disapproval()
+
+def challenge_disapproval():
+    try:
+        challenge_choice = input("Do you want to challenge disapproval? Y/N:\n")
+        if challenge_choice.capitalize() == "Y":
+            wait()
+            print("Thank you. We will get in touch soon to discuss it!")
+            wait()
+            give_options()
+        elif challenge_choice.capitalize() == "N":
+            wait()
+            print("Thank you.")
+            wait()
+            give_options()
+        else:
+            raise ValueError
+    except ValueError:
+        print("Please try again, enter Y or N.")
 
 def see_birthdays():
     """
