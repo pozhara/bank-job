@@ -11,13 +11,19 @@ This section contains brief introduction to make program's theme clear. Then ask
 Inputs ask for first and last name, date of birth and job role. 
 
 String inputs are checked for:
+
 -length being higher than 20 and lower than 1;
+
 -being a number or null;
+
 -being an unalphabetic character.
 
 Number inputs are checked for:
+
 -birth day being higher than 31 or lower than 1;
+
 -birth month being higher than 12 or lower than 1;
+
 -then program calculates exact age based on the year input, if user is underage or older than 80, then they have to try again.
 
 ![Photo of this section](images/register.jpg)
@@ -33,14 +39,21 @@ Then worksheet gets updated and the menu appears that asks user what they want t
 Program states user's name, that they are requesting time off and what information will be needed (starting date, ending date and a reason).
 
 Dates are checked for:
+
 -being higher than 31.12 or lower than 01.01;
+
 -being an integer;
+
 -numbers after comma being exactly two and being higher than 12;
+
 -being null.
 
 Reason is checked for:
+
 -length being higher than 25 or lower than 1;
+
 -being numeric or having special characters;
+
 -being null.
 
 ![Photo of request time off option](images/request.jpg)
@@ -53,6 +66,7 @@ If even number comes up, user gets approval.
 If uneven number does, user gets disapproval and gets asked if they want to challenge it. 
 
 Challenge input is checked for:
+
 -being anything other than Y or N.
 
 If their input is Y, they get a message that someone will contact them soon and then the menu appears, asking user what they want to do.
@@ -119,3 +133,31 @@ Although Problems section on gitpod says that there are 58 problems. Most of the
 I tried making lines smaller, for some lines it helped, for some not.
 
 ![Photo of problems](images/problems.jpg)
+
+There was a lot of testing and researching while I was writing the program. Strings and numbers checking for challenging for me, especially floats. Also had a hard time figuring out how to print out birthdays and roles. 
+
+Didn't have while True at first so the program was asking the same question again and again.
+
+The remaining unfixed bug is if you pick some option, other then exit, and then immediately after you pick it again, terminal clears and you're left with a blank terminal, nothing prints out so you have to run the program again.
+
+# Deployment
+
+In order to deploy the project I had to insert requirements to requirements.txt and add \n in inputs.
+
+On Heroku:
+
+-name app;
+
+-add config vars;
+
+-add buildpacks;
+
+-synch github to heroku;
+
+-select a repository;
+
+-select deploy.
+
+I also selected automatic deploys.
+
+The live link of the program is: https://pol-bank-job.herokuapp.com/
