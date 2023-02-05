@@ -46,6 +46,9 @@ Reason is checked for:
 ![Photo of request time off option](images/request.jpg)
 
 Once the user completes requesting, worksheet is updated and program gets a random number between 1 and 10 to approve or disapprove the request.
+
+![Photo of updated worksheet](images/requests-list.jpg)
+
 If even number comes up, user gets approval.
 If uneven number does, user gets disapproval and gets asked if they want to challenge it. 
 
@@ -58,3 +61,61 @@ If their input was N, they get a thank you message and the menu appears.
 ![Photo of request approval](images/request-validation.jpg)
 
 ## See your colleagues' birthdays
+Program first states how colleagues' birthday will be printed out and then prints them out.
+
+![Photo of see colleagues' birthday option](images/see-birthdays.jpg)
+
+Data is taken from birthdays list in the worksheet.
+
+![Photo of birthday list](images/birthday-list.jpg)
+
+## See your colleagues' names and roles
+
+Program first states how data will be printed out and then prints it out.
+
+![Photo of see colleagues' names and roles option](images/see-roles.jpg)
+
+Data is taken from employees list in the worksheet.
+
+![Photo of employees list](images/roles-list.jpg)
+
+## Exit
+
+When user enters number 4, terminal clears and then prints out a thank you message.
+
+![Photo of exit function](images/exit.jpg)
+
+# Frameworks and libraries used
+
+Google Spreadsheet to store data.
+
+Google Cloud to set up APIs.
+
+Google Drive API to get credentials to access google files from the drive.
+
+Google Sheets API to access and update the spreadsheet.
+
+gspread to access and update data in the Google Sheet.
+
+Google Auth to set up the authentication needed to access the project.
+
+Time to add pauses.
+
+OS to clear terminal.
+
+Regular Expression (re) to validate strings.
+
+sys to exit the program.
+
+# Testing
+
+I validated code using some webpages.
+
+![Photo of the first validator](images/first-validator.jpg)
+
+![Photo of the second validator](images/second-validator.jpg)
+
+Although Problems section on gitpod says that there are 58 problems. Most of them is line too long.
+I tried making lines smaller, for some lines it helped, for some not.
+
+![Photo of problems](images/problems.jpg)
