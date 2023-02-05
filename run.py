@@ -1,12 +1,12 @@
-import gspread # to use google sheets
+import datetime  # to check age
+import math  # to check decimal
+import sys  # to exit the program
+import time  # to add pauses
+from os import system  # to clear terminal
+import re  # to check for special characters in a string input
+import random  # to approve or disapprove requests for time off
+import gspread  # to use google sheets
 from google.oauth2.service_account import Credentials
-import datetime # to check age
-import math # to check decimal
-import sys # to exit the program
-import time # to add pauses
-from os import system # to clear terminal
-import re # to check for special characters in a string input
-import random # to approve or disapprove requests for time off
 
 # Defines the scope
 SCOPE = [
@@ -25,9 +25,10 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("office-work")
 
 # A greeting, instruction on what to do next
-print("Hello, we are a recently opened bank,") 
+print("Hello, we are a recently opened bank,")
 print("thank you for starting your career with us.")
 print("Your next step is to add yourself as an employee to our system.\n")
+
 
 def clear():
     """
@@ -36,12 +37,14 @@ def clear():
     """
     system('clear')
 
+
 def wait():
     """
     Adds pause before going on.
     https://www.pythoncentral.io/pythons-time-sleep-pause-wait-sleep-stop-your-code/
     """
     time.sleep(2.5)
+
 
 def update_worksheet(data, worksheet):
     """
@@ -51,24 +54,29 @@ def update_worksheet(data, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
 
+
 while True:
     try:
-        """ 
-        Asks for first name, checks for length, the input not being a number or null.
+        """
+        Asks for first name, checks for length,
+        the input not being a number or null.
         Raises ValueError if input isn't valid.
         """
-        first_name = input("\nPlease enter your first name(maximum 20 characters):\n")
+        first_name = input("\nPlease enter your"
+                           " first name(maximum 20 characters):\n")
         cap_first_name = first_name.capitalize()
         if len(first_name) < 1 or len(first_name) > 20 or first_name.isnumeric() or not first_name.isalpha():
             raise ValueError
         break
     except ValueError:
-        print("Please try again, enter your first name, maximum 20 characters.")
+        print("Please try again, enter your "
+              "first name, maximum 20 characters.")
 
 while True:
     try:
-        """ 
-        Asks for first name, checks for length, the input not being a number or null.
+        """
+        Asks for first name, checks for length,
+        the input not being a number or null.
         Raises ValueError if input isn't valid.
         """
         last_name = input("\nPlease enter your last name(maximum 20 characters):\n")
@@ -135,7 +143,8 @@ while True:
 while True:
     try:
         """
-        Asks for a role. Checks for length and input being a number or null.
+        Asks for a role. Checks for length
+        and input being a number or null.
         If data is valid, it is added to employees worksheet.
         If it isn't, raises a ValueError.
         """
@@ -148,15 +157,19 @@ while True:
             employee_data = employee_data.split(",")
             employee_data_for_ws = [i.strip() for i in employee_data]
             update_worksheet(employee_data_for_ws, "Employees")
-            print("\nThank you, the data provided is valid and is now added to our database.\n")
+            print("\nThank you, the data provided is "
+                  "valid and is now added to our database.\n")
         break
     except ValueError:
         print("Please try again, your job role should be 20 characters maximum.")
 
+
 def give_options():
     """
-    Asks user what they want to do, checks user input to be a number between 1 and 4.
-    If it is, clears terminal, waits a bit and does what the user chose.
+    Asks user what they want to do,
+    checks user input to be a number between 1 and 4.
+    If it is, clears terminal, waits a bit
+    and does what the user chose.
     If it's not, raises ValueError.
     """
     print("\nWhat would you like to do?\n1. Request time off.\n2. See your colleagues' birthdays.\n3. See your colleagues' names and roles.\n4. Exit.")
@@ -177,10 +190,13 @@ def give_options():
     clear()
     wait()
 
+
 def request_time_off(cap_first_name, cap_last_name):
     """
-    Asks for starting and ending date and a reason for a day off. 
-    If the data is valid, request a day off worksheet is updated, 
+    Asks for starting and ending date
+    and a reason for a day off.
+    If the data is valid,
+    request a day off worksheet is updated,
     waits a bit and asks what user wants to do next.
     """
     print("You are currently requesting time off. We will need you to provide starting and ending date, and a reason.\n")
@@ -190,11 +206,15 @@ def request_time_off(cap_first_name, cap_last_name):
         try:
             """
             Asks for starting date.
-            If it's lower than 01.01, higher than 31.12, is integer,
-            numbers after comma are higher than 12 and if there are 
-            more than 2 numbers after comma, raises a ValueError.
+            If it's lower than 01.01,
+            higher than 31.12, is integer,
+            numbers after comma are higher
+            than 12 and if there are
+            more than 2 numbers after comma,
+            raises a ValueError.
             Approves or disapproves a request.
-            If request is disapproved, user can challenge it.
+            If request is disapproved,
+            user can challenge it.
             """
             starting_date = float(input("\nPlease enter a starting date (For example: 01.02):\n"))
             whole = math.floor(starting_date)
@@ -209,9 +229,12 @@ def request_time_off(cap_first_name, cap_last_name):
         try:
             """
             Asks for ending date.
-            If it's lower than 01.01, higher than 31.12, is integer,
-            numbers after comma are higher than 12 or there are 
-            more than 2 numbers after comma, raises a ValueError.
+            If it's lower than 01.01,
+            higher than 31.12, is integer,
+            numbers after comma are higher
+            than 12 or there are
+            more than 2 numbers after comma,
+            raises a ValueError.
             """
             ending_date = float(input("\nPlease enter an ending date (For example: 01.02):\n"))
             whole_two = math.floor(ending_date)
@@ -225,38 +248,47 @@ def request_time_off(cap_first_name, cap_last_name):
         try:
             """
             Asks for a reason.
-            If it's length is higher than 25 or null, or if it's a number, raises ValueError.
-            Otherwise, updates day off requests worksheet and thanks the user.
+            If it's length is higher than 25 or null,
+            or if it's a number, raises ValueError.
+            Otherwise, updates day off requests
+            worksheet and thanks the user.
             https://stackoverflow.com/questions/57062794/how-to-check-if-a-string-has-any-special-characters
             """
             user_reason = input("\nPlease provide a reason (maximum 25 characters):\n")
             regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
-            if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric() or not (regex.search(user_reason) == None):
+            if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric() or not regex.search(user_reason) is None:
                 raise ValueError
             else:
                 request_data = cap_first_name + "," + cap_last_name + "," + str(starting_date) + "," + str(ending_date) + "," + user_reason
                 request_data = request_data.split(",")
                 request_data_for_sw = [i.strip() for i in request_data]
                 update_worksheet(request_data_for_sw, "Day Off Requests")
-                print("\nThank you, data provided is valid and was added to our database.\n")
+                print("\nThank you, data provided is valid "
+                      "and was added to our database.\n")
             break
         except ValueError:
-            print("Please provide a reason, maximum 25 characters. You can write a number as long as it's not at the beginning.")
+            print("Please provide a reason, maximum 25 characters. "
+                  "You can write a number as long "
+                  "as it's not at the beginning.")
     print("Please wait, we are processing your request...\n")
     wait()
     wait()
     approve_request()
 
+
 def approve_request():
     # Randomly approves or disapproves a request for time off.
-    random_number = random.randint(1,10)
+    random_number = random.randint(1, 10)
     if random_number % 2 == 0:
         print("Your request for time off was approved!")
         wait()
         give_options()
     else:
-        print("Your request for time off was not approved. You can challenge disapproval if needed and we will give you a call to discuss it.\n")
+        print("Your request for time off was not approved. "
+              "You can challenge disapproval if needed and "
+              "we will give you a call to discuss it.\n")
         challenge_disapproval()
+
 
 def challenge_disapproval():
     # Lets the user challenge disapproval of request for a time off.
@@ -277,9 +309,10 @@ def challenge_disapproval():
     except ValueError:
         print("Please try again, enter Y or N.")
 
+
 def see_birthdays():
     """
-    Prints out employees' names and birthdays. 
+    Prints out employees' names and birthdays.
     Then waits and asks the user what they want to do.
     """
     birthdays = SHEET.worksheet("Birthday").get_all_values()
@@ -309,6 +342,7 @@ def see_roles():
     wait()
     give_options()
 
+
 def main(cap_first_name, cap_last_name):
     """
     Main function which calls other functions
@@ -324,6 +358,7 @@ def main(cap_first_name, cap_last_name):
     if user_input == 4:
         clear()
         sys.exit("You have exited the program. Thank you!")
+
 
 # Calling the main function
 main(cap_first_name, cap_last_name)
