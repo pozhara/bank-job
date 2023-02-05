@@ -215,6 +215,7 @@ def request_time_off(cap_first_name, cap_last_name):
             Approves or disapproves a request.
             If request is disapproved,
             user can challenge it.
+            https://stackoverflow.com/questions/3886402/how-to-get-numbers-after-decimal-point
             """
             starting_date = float(input("\nPlease enter a starting date (For example: 01.02):\n"))
             whole = math.floor(starting_date)

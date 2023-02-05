@@ -161,3 +161,19 @@ On Heroku:
 I also selected automatic deploys.
 
 The live link of the program is: https://pol-bank-job.herokuapp.com/
+
+# Credits
+
+The whole process of connecting spreadsheet to gitpod and update_worksheet function were taken from Love Sandwiches project. 
+
+Adding pause before going on was taken from: 
+https://www.pythoncentral.io/pythons-time-sleep-pause-wait-sleep-stop-your-code/
+
+Clearing the terminal was taken from: 
+https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+
+Checking strings for special characters was taken from: 
+https://stackoverflow.com/questions/57062794/how-to-check-if-a-string-has-any-special-characters
+
+Getting numbers after decimal point was taken from: 
+https://stackoverflow.com/questions/3886402/how-to-get-numbers-after-decimal-point
