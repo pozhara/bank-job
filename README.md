@@ -1,6 +1,10 @@
 # Bank Job
 
-Bank Job is a program that lets a user register as an employee in a newly opened bank. Then gives options on what to do next: request time off, see colleagues birthdays or roles, or exit. 
+Bank Job is a program that lets a user register as an employee in a newly opened bank. Then gives options on what to do next: request time off, see colleagues birthdays or roles, or exit.
+
+The live link to the program: https://pol-bank-job.herokuapp.com/
+
+The link to my spreadsheet: https://docs.google.com/spreadsheets/d/11l1zjbqZfBe5d8x0NezmQfyXGqYsxjuygrjwLQOcd6s/edit#gid=0
 
 # Existing features
 
@@ -160,7 +164,7 @@ On Heroku:
 
 I also selected automatic deploys.
 
-The live link of the program is: https://pol-bank-job.herokuapp.com/
+The live link to the program is: https://pol-bank-job.herokuapp.com/
 
 # Credits
 
