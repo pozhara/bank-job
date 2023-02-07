@@ -164,6 +164,13 @@ while True:
         print("Please try again, your job role should be 20 characters maximum.")
 
 
+def check_choice(number):
+    if number >= 1 and number <= 4:
+        return True
+    elif number < 1 or number > 4:
+        return False
+
+
 def give_options():
     """
     Asks user what they want to do,
@@ -177,18 +184,16 @@ def give_options():
         try:
             global user_input
             user_input = int(input("Please enter a number:\n"))
-            if user_input >= 1 and user_input <= 4:
+            if check_choice(user_input):
                 print("\nPlease wait, we are processing your request...\n")
                 wait()
                 clear()
-            elif user_input < 1 or user_input > 4:
+            else:
                 raise ValueError
             break
         except ValueError:
             print("\nPlease try again, enter a number between 1 and 4.\n")
-    return user_input
-    clear()
-    wait()
+        return user_input
 
 
 def request_time_off(cap_first_name, cap_last_name):
@@ -264,14 +269,12 @@ def request_time_off(cap_first_name, cap_last_name):
                 request_data = request_data.split(",")
                 request_data_for_sw = [i.strip() for i in request_data]
                 update_worksheet(request_data_for_sw, "Day Off Requests")
-                print("\nThank you, data provided is valid "
-                      "and was added to our database.\n")
+                print("\nPlease wait, we are processing your request...\n")
             break
         except ValueError:
             print("Please provide a reason, maximum 25 characters. "
                   "You can write a number as long "
                   "as it's not at the beginning.")
-    print("Please wait, we are processing your request...\n")
     wait()
     wait()
     approve_request()
@@ -325,6 +328,7 @@ def see_birthdays():
         employees_birthday = last_name_birthday + ", " + first_name_birthday + ": " + age_day_birthday + "." + age_month_birthday
         print(employees_birthday)
     wait()
+    return True
     give_options()
 
 
@@ -341,6 +345,7 @@ def see_roles():
         data_to_print = employee_lname + ", " + employee_fname + " - " + role
         print(data_to_print)
     wait()
+    return True
     give_options()
 
 
@@ -349,16 +354,17 @@ def main(cap_first_name, cap_last_name):
     Main function which calls other functions
     based on user input.
     """
-    give_options()
-    if user_input == 1:
-        request_time_off(cap_first_name, cap_last_name)
-    if user_input == 2:
-        see_birthdays()
-    if user_input == 3:
-        see_roles()
-    if user_input == 4:
-        clear()
-        sys.exit("You have exited the program. Thank you!")
+    while True:
+        give_options()
+        if user_input == 1:
+            request_time_off(cap_first_name, cap_last_name)
+        if user_input == 2:
+            see_birthdays()
+        if user_input == 3:
+            see_roles()
+        if user_input == 4:
+            clear()
+            sys.exit("You have exited the program. Thank you!")
 
 
 # Calling the main function

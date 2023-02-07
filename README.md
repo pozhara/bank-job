@@ -142,7 +142,7 @@ There was a lot of testing and researching while I was writing the program. Stri
 
 Didn't have while True at first so the program was asking the same question again and again.
 
-The remaining unfixed bug is if you pick some option, other then exit, and then immediately after you pick it again, terminal clears and you're left with a blank terminal, nothing prints out so you have to run the program again.
+The remaining unfixed bug is if user picks request time off option, do what the program tells them then immediately after this user picks the first option again, they will get main menu. Then if they immediately pick 1 once again, they can request time off.
 
 # Deployment
 
