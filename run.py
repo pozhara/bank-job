@@ -79,7 +79,8 @@ while True:
         the input not being a number or null.
         Raises ValueError if input isn't valid.
         """
-        last_name = input("\nPlease enter your last name(maximum 20 characters):\n")
+        last_name = input("\nPlease enter your last "
+                          "name(maximum 20 characters):\n")
         cap_last_name = last_name.capitalize()
         if len(last_name) < 1 or len(last_name) > 20 or last_name.isnumeric() or not last_name.isalpha():
             raise ValueError
@@ -148,7 +149,8 @@ while True:
         If data is valid, it is added to employees worksheet.
         If it isn't, raises a ValueError.
         """
-        employee_role = input("\nPlease enter your job role(maximum 20 characters):\n")
+        employee_role = input("\nPlease enter your job role"
+                              "(maximum 20 characters):\n")
         cap_employee_role = employee_role.capitalize()
         if len(employee_role) < 1 or len(employee_role) > 20 or employee_role.isnumeric() or not employee_role.isalpha():
             raise ValueError
@@ -161,7 +163,8 @@ while True:
                   "valid and is now added to our database.\n")
         break
     except ValueError:
-        print("Please try again, your job role should be 20 characters maximum.")
+        print("Please try again, your job role "
+              "should be 20 characters maximum.")
 
 
 def check_choice(number):
@@ -179,7 +182,11 @@ def give_options():
     and does what the user chose.
     If it's not, raises ValueError.
     """
-    print("\nWhat would you like to do?\n1. Request time off.\n2. See your colleagues' birthdays.\n3. See your colleagues' names and roles.\n4. Exit.")
+    print("\nWhat would you like to do?\n"
+          "1. Request time off.\n"
+          "2. See your colleagues' birthdays.\n"
+          "3. See your colleagues' names and roles.\n"
+          "4. Exit.")
     while True:
         try:
             global user_input
@@ -204,7 +211,9 @@ def request_time_off(cap_first_name, cap_last_name):
     request a day off worksheet is updated,
     waits a bit and asks what user wants to do next.
     """
-    print("You are currently requesting time off. We will need you to provide starting and ending date, and a reason.\n")
+    print("You are currently requesting time off. "
+          "We will need you to provide starting "
+          "and ending date, and a reason.\n")
     while True:
         user_name = "Your name is " + cap_first_name + " " + cap_last_name + "."
         print(user_name)
@@ -222,7 +231,8 @@ def request_time_off(cap_first_name, cap_last_name):
             user can challenge it.
             https://stackoverflow.com/questions/3886402/how-to-get-numbers-after-decimal-point
             """
-            starting_date = float(input("\nPlease enter a starting date (For example: 01.02):\n"))
+            starting_date = float(input("\nPlease enter a starting date"
+                                        " (For example: 01.02):\n"))
             whole = math.floor(starting_date)
             frac = starting_date - whole
             needed_decimal = '0.23'
@@ -242,7 +252,8 @@ def request_time_off(cap_first_name, cap_last_name):
             more than 2 numbers after comma,
             raises a ValueError.
             """
-            ending_date = float(input("\nPlease enter an ending date (For example: 01.02):\n"))
+            ending_date = float(input("\nPlease enter an ending date"
+                                      " (For example: 01.02):\n"))
             whole_two = math.floor(ending_date)
             frac_two = ending_date - whole_two
             if ending_date > 31.12 or ending_date < 01.01 or ending_date.is_integer() or frac_two > 0.12 or len(needed_decimal) > len(str(ending_date)) or ending_date < starting_date:
@@ -260,7 +271,8 @@ def request_time_off(cap_first_name, cap_last_name):
             worksheet and thanks the user.
             https://stackoverflow.com/questions/57062794/how-to-check-if-a-string-has-any-special-characters
             """
-            user_reason = input("\nPlease provide a reason (maximum 25 characters):\n")
+            user_reason = input("\nPlease provide a reason"
+                                " (maximum 25 characters):\n")
             regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
             if len(user_reason) > 25 or len(user_reason) < 1 or user_reason.isnumeric() or not regex.search(user_reason) is None:
                 raise ValueError
@@ -286,6 +298,7 @@ def approve_request():
     if random_number % 2 == 0:
         print("Your request for time off was approved!")
         wait()
+        return True
         give_options()
     else:
         print("Your request for time off was not approved. "
@@ -297,16 +310,19 @@ def approve_request():
 def challenge_disapproval():
     # Lets the user challenge disapproval of request for a time off.
     try:
-        challenge_choice = input("Do you want to challenge disapproval? Y/N:\n")
+        challenge_choice = input("Do you want to "
+                                 "challenge disapproval? Y/N:\n")
         if challenge_choice.capitalize() == "Y":
             wait()
             print("Thank you. We will get in touch soon to discuss it!")
             wait()
+            return True
             give_options()
         elif challenge_choice.capitalize() == "N":
             wait()
             print("Thank you.")
             wait()
+            return True
             give_options()
         else:
             raise ValueError

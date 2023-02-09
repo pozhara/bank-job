@@ -127,22 +127,18 @@ sys to exit the program.
 
 # Testing
 
-I validated code using some webpages.
+I validated code using Code Institute's PEP8.
 
-![Photo of the first validator](images/first-validator.jpg)
-
-![Photo of the second validator](images/second-validator.jpg)
-
-Although Problems section on gitpod says that there are 58 problems. Most of them is line too long.
+I have some problems, almost all of them is line too long.
 I tried making lines smaller, for some lines it helped, for some not.
 
-![Photo of problems](images/problems.jpg)
+![Photo of the Code Institute's PEP8 validator](images/ci-pep8.png)
 
 There was a lot of testing and researching while I was writing the program. Strings and numbers checking for challenging for me, especially floats. Also had a hard time figuring out how to print out birthdays and roles. 
 
 Didn't have while True at first so the program was asking the same question again and again.
 
-The remaining unfixed bug is if user picks request time off option, do what the program tells them then immediately after this user picks the first option again, they will get main menu. Then if they immediately pick 1 once again, they can request time off.
+The fixed bug that I thought would be remaining unfixed is if user picks request time off option, do what the program tells them then immediately after this user picks the first option again, they will get main menu. Then if they immediately pick 1 once again, they can request time off.
 
 # Deployment
 
